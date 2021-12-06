@@ -9,10 +9,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AutomatedTests
 {
-    public class Tests
+    public class OnlinetradeTests
     {
         IWebDriver driver;
-
         [SetUp]
         public void Setup()
         {
@@ -29,13 +28,14 @@ namespace AutomatedTests
             driver.FindElement(By.CssSelector(".mCM__item__link")).Click();
             driver.FindElement(By.CssSelector(".drawCats__item__image")).Click();
             driver.FindElement(By.CssSelector(".drawCats__item__image")).Click();
-            driver.FindElement(By.CssSelector("[title*='Подобрать по цене в категории «Смартфоны»']")).Click();
+            driver.FindElement(By.XPath("//*[contains(text(), 'Подобрать по цене')]")).Click();
             driver.FindElement(By.Id("price1")).Clear();
             driver.FindElement(By.Id("price1")).SendKeys("10000");
             driver.FindElement(By.Id("price2")).Clear();
             driver.FindElement(By.Id("price2")).SendKeys("20000");
             driver.FindElement(By.Id("price2")).SendKeys(Keys.Enter);
             driver.FindElement(By.CssSelector(".js__filterResult_link")).Click();
+            // Строка имеет вид ** ***Р, и чтобы из этого просто составить строку для парсинга вида ***** мы берем 0 и 1 символ и с 3 по 5
             int[] actualValues = Array.ConvertAll(driver.FindElements(By.CssSelector(".js__actualPrice"))
                .Select(webPrice => webPrice.Text.Trim()).ToArray(), s => int.Parse(s[0..^6] + s[3..^2]));
             actualValues.ToList().ForEach(actualPrice => Assert.True(actualPrice >= 10000 && actualPrice <= 20000, "Price filter works wrong. Actual price is " + actualPrice + ". But should be more or equal than 1000 and less or equal than 10000"));

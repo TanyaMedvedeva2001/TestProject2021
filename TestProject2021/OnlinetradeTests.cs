@@ -28,7 +28,7 @@ namespace AutomatedTests
             driver.FindElement(By.CssSelector(".mCM__item__link")).Click();
             driver.FindElement(By.CssSelector(".drawCats__item__image")).Click();
             driver.FindElement(By.CssSelector(".drawCats__item__image")).Click();
-            driver.FindElement(By.XPath("//*[contains(text(), 'Ïîäîáðàòü ïî öåíå')]")).Click();
+            driver.FindElement(By.XPath("//*[contains(text(), 'Подобрать по цене')]")).Click();
             driver.FindElement(By.Id("price1")).Clear();
             driver.FindElement(By.Id("price1")).SendKeys("10000");
             driver.FindElement(By.Id("price2")).Clear();
@@ -44,7 +44,7 @@ namespace AutomatedTests
         [Test]
         public void TestTooltipText()
         {
-            Assert.AreEqual("Êàòàëîã òîâàðîâ", driver.FindElement(By.CssSelector(".header__button")).GetAttribute("title"));
+            Assert.AreEqual("Каталог товаров", driver.FindElement(By.CssSelector(".header__button")).GetAttribute("title"));
 
         }
         [Test]

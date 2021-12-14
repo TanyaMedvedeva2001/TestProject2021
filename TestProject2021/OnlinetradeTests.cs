@@ -28,14 +28,14 @@ namespace AutomatedTests
             driver.FindElement(By.CssSelector(".mCM__item__link")).Click();
             driver.FindElement(By.CssSelector(".drawCats__item__image")).Click();
             driver.FindElement(By.CssSelector(".drawCats__item__image")).Click();
-            driver.FindElement(By.XPath("//*[contains(text(), 'Ïîäîáðàòü ïî öåíå')]")).Click();
+            driver.FindElement(By.XPath("//*[contains(text(), 'ÃÃ®Ã¤Ã®Ã¡Ã°Ã Ã²Ã¼ Ã¯Ã® Ã¶Ã¥Ã­Ã¥')]")).Click();
             driver.FindElement(By.Id("price1")).Clear();
             driver.FindElement(By.Id("price1")).SendKeys("10000");
             driver.FindElement(By.Id("price2")).Clear();
             driver.FindElement(By.Id("price2")).SendKeys("20000");
             driver.FindElement(By.Id("price2")).SendKeys(Keys.Enter);
             driver.FindElement(By.CssSelector(".js__filterResult_link")).Click();
-            // Ñòðîêà èìååò âèä ** ***Ð, è ÷òîáû èç ýòîãî ïðîñòî ñîñòàâèòü ñòðîêó äëÿ ïàðñèíãà âèäà ***** ìû áåðåì 0 è 1 ñèìâîë è ñ 3 ïî 5
+            // Ð¡Ñ‚Ñ€Ð¾ÐºÐ° Ð¸Ð¼ÐµÐµÑ‚ Ð²Ð¸Ð´ ** ***Ð , Ð¸ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¸Ð· ÑÑ‚Ð¾Ð³Ð¾ Ð¿Ñ€Ð¾ÑÑ‚Ð¾ ÑÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð´Ð»Ñ Ð¿Ð°Ñ€ÑÐ¸Ð½Ð³Ð° Ð²Ð¸Ð´Ð° ***** Ð¼Ñ‹ Ð±ÐµÑ€ÐµÐ¼ 0 Ð¸ 1 ÑÐ¸Ð¼Ð²Ð¾Ð» Ð¸ Ñ 3 Ð¿Ð¾ 5
             int[] actualValues = Array.ConvertAll(driver.FindElements(By.CssSelector(".js__actualPrice"))
                .Select(webPrice => webPrice.Text.Trim()).ToArray(), s => int.Parse(s[0..^6] + s[3..^2]));
             actualValues.ToList().ForEach(actualPrice => Assert.True(actualPrice >= 10000 && actualPrice <= 20000, "Price filter works wrong. Actual price is " + actualPrice + ". But should be more or equal than 1000 and less or equal than 10000"));
@@ -44,7 +44,7 @@ namespace AutomatedTests
         [Test]
         public void TestTooltipText()
         {
-            Assert.AreEqual("Êàòàëîã òîâàðîâ", driver.FindElement(By.CssSelector(".header__button")).GetAttribute("title"));
+            Assert.AreEqual("ÃŠÃ Ã²Ã Ã«Ã®Ã£ Ã²Ã®Ã¢Ã Ã°Ã®Ã¢", driver.FindElement(By.CssSelector(".header__button")).GetAttribute("title"));
 
         }
         [Test]
